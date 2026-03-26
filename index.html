@@ -294,6 +294,19 @@
         .price-val { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; margin: 1rem 0; }
 
         /* Infraestrutura */
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-group label { display: block; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .form-control { 
+            width: 100%; 
+            padding: 0.8rem 1rem; 
+            border: 1px solid #e1e1e1; 
+            border-radius: 10px; 
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            background: #f9f9f9;
+        }
+        .form-control:focus { outline: none; border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(0, 91, 150, 0.1); }
+
         .infra-grid {
             display: flex;
             flex-wrap: wrap;
@@ -404,7 +417,7 @@
                 <li><a href="#regulamento">Regulamento</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="https://www.minasbeach.com.br/trabalheconosco" target="_blank">Trabalhe Conosco</a></li>
+                <li><a href="#trabalhe-conosco">Trabalhe Conosco</a></li>
             </ul>
         </nav>
         <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket">COMPRAR INGRESSO</a>
@@ -427,19 +440,19 @@
 
         <section class="info-bar">
             <div class="info-item">
-                <i data-lucide="clock"></i>
-                <strong>Funcionamento</strong>
-                <span>Aberto hoje: 09h às 18h</span>
+                <i data-lucide="shield-check"></i>
+                <strong>Segurança Total</strong>
+                <span>Salva-vidas e monitores treinados</span>
             </div>
             <div class="info-item">
                 <i data-lucide="map-pin"></i>
-                <strong>Localização</strong>
-                <span>Raul Soares - MG</span>
+                <strong>Localização Privilegiada</strong>
+                <span>Raul Soares - Minas Gerais</span>
             </div>
             <div class="info-item">
-                <i data-lucide="thermometer-sun"></i>
-                <strong>Clima hoje</strong>
-                <span>28°C Ensolarado</span>
+                <i data-lucide="car"></i>
+                <strong>Estacionamento</strong>
+                <span>Amplo e gratuito para visitantes</span>
             </div>
         </section>
 
@@ -787,13 +800,82 @@
             </div>
         </section>
 
+        <!-- Seção Trabalhe Conosco Integrada -->
+        <section id="trabalhe-conosco" class="section-padding" style="background: #f4f7f9;">
+            <div class="section-title reveal">
+                <h2>Trabalhe Conosco</h2>
+                <p>Venha fazer parte do time do maior complexo de lazer de Minas Gerais!</p>
+            </div>
+
+            <!-- Destaque de Vaga Específica -->
+            <div class="card reveal" style="max-width: 900px; margin: 0 auto 3rem; overflow: hidden; display: flex; flex-wrap: wrap; padding: 0; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <div style="flex: 1; min-width: 300px; background: #eee;">
+                    <img src="https://i.imgur.com/ss0lbME.png" alt="Vaga Promotor de Vendas" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+                <div style="flex: 1.2; min-width: 300px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; background: #fff;">
+                    <h3 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 1rem; font-weight: 800;">Vagas abertas para Promotor de Vendas</h3>
+                    <p style="margin-bottom: 1.5rem; color: #555; font-size: 1.1rem;">Se você se identifica com essa vaga, nos envie seu currículo!</p>
+                    
+                    <div style="background: #f0f7ff; padding: 1.5rem; border-radius: 12px; border-left: 5px solid var(--secondary); box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                        <p style="font-weight: 700; color: var(--dark); margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Informações para Candidatura:</p>
+                        <p style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 1.1rem;">
+                            <i data-lucide="phone" style="width: 20px; color: var(--primary);"></i>
+                            <a href="https://wa.me/5533991136225" target="_blank" style="text-decoration: none; color: inherit; font-weight: 600;">(33) 9 9113-6225</a>
+                        </p>
+                        <p style="display: flex; align-items: center; gap: 10px; font-size: 1rem;">
+                            <i data-lucide="mail" style="width: 20px; color: var(--primary);"></i>
+                            <a href="mailto:curriculos@minasbeachresort.com.br" style="text-decoration: none; color: inherit; font-weight: 600;">curriculos@minasbeachresort.com.br</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card reveal" style="max-width: 800px; margin: 0 auto; padding: 3rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">Candidatura Geral</h3>
+                <form id="recruitment-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group">
+                            <label>Nome Completo</label>
+                            <input type="text" class="form-control" placeholder="Seu nome completo">
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail Profissional</label>
+                            <input type="email" class="form-control" placeholder="exemplo@email.com">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="form-group">
+                            <label>WhatsApp / Celular</label>
+                            <input type="tel" class="form-control" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label>Área de Interesse</label>
+                            <select class="form-control">
+                                <option value="">Selecione uma área...</option>
+                                <option>Atendimento ao Cliente</option>
+                                <option>Operação de Atrações / Salva-vidas</option>
+                                <option>Cozinha e Restaurante</option>
+                                <option>Manutenção e Limpeza</option>
+                                <option>Administrativo / Marketing</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Resumo de Experiência ou Link do Currículo (Drive/LinkedIn)</label>
+                        <textarea class="form-control" rows="4" placeholder="Conte-nos um pouco sobre sua trajetória profissional..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-ticket" style="width: 100%; border: none; cursor: pointer; margin-top: 1rem;">ENVIAR MINHA CANDIDATURA</button>
+                </form>
+            </div>
+        </section>
+
         <!-- Localização -->
         <section id="contato" class="section-padding">
             <div class="section-title reveal">
                 <h2>Onde Estamos</h2>
                 <p>Fácil acesso pela BR-116 em Raul Soares - MG</p>
                 <div style="margin-top: 2rem;">
-                    <a href="https://www.minasbeach.com.br/trabalheconosco" target="_blank" class="btn-ticket">FAÇA PARTE DO TIME</a>
+                    <a href="#trabalhe-conosco" class="btn-ticket">FAÇA PARTE DO TIME</a>
                 </div>
             </div>
             <div class="map-container reveal">
@@ -805,28 +887,31 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h3 style="color: var(--primary); margin-bottom: 1rem;">MINAS BEACH</h3>
-                <p>O melhor destino de lazer da região. Viva o verão o ano todo conosco!</p>
-                <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">CNPJ: 12.345.678/0001-90<br>Fazenda Córrego do Ouro, s/n, Raul Soares - MG</p>
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">MINAS BEACH PARK LTDA</h3>
+                <p>O maior e mais completo complexo aquático temático de Minas Gerais. Diversão e lazer com padrão internacional.</p>
+                <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">CNPJ: 22.424.888/0001-22<br>Fazenda Córrego do Ouro, s/n, Raul Soares - MG</p>
             </div>
             <div>
                 <h4>Links Úteis</h4>
                 <p><a href="#regulamento" style="color: inherit; text-decoration: none;">Regulamento</a></p>
                 <p>Dúvidas Frequentes</p>
-                <p><a href="https://www.minasbeach.com.br/trabalheconosco" target="_blank" style="color: inherit; text-decoration: none;">Trabalhe Conosco</a></p>
+                <p><a href="#trabalhe-conosco" style="color: inherit; text-decoration: none;">Trabalhe Conosco</a></p>
             </div>
             <div>
-                <h4>Redes Sociais</h4>
+                <h4>Atendimento</h4>
+                <p><i data-lucide="phone" style="width: 16px; display: inline; vertical-align: middle;"></i> Park: (33) 9 9999-9074</p>
+                <p><i data-lucide="phone" style="width: 16px; display: inline; vertical-align: middle;"></i> Resort: (33) 3038-6095</p>
                 <p><i data-lucide="instagram" style="width: 16px; display: inline; vertical-align: middle;"></i> @minasbeachoficial</p>
-                <p><i data-lucide="facebook" style="width: 16px; display: inline; vertical-align: middle;"></i> /minasbeach</p>
-                <p><i data-lucide="phone" style="width: 16px; display: inline; vertical-align: middle;"></i> (33) 3351-1234</p>
-                <p><i data-lucide="message-circle" style="width: 16px; display: inline; vertical-align: middle;"></i> WhatsApp: (33) 99999-9999</p>
             </div>
         </div>
         <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
-            <p>&copy; 2023 Minas Beach Water Park. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Minas Beach Park LTDA. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <a href="https://wa.me/5533999999074" target="_blank" style="position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; text-decoration: none;">
+        <i data-lucide="message-circle"></i>
+    </a>
 
     <script>
         // Inicializa os ícones da biblioteca Lucide
