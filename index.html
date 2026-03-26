@@ -72,7 +72,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.2rem;
+            gap: 0.8rem;
         }
 
         nav a {
@@ -227,6 +227,13 @@
             height: 200px;
             background-size: cover;
             background-position: center;
+        }
+
+        .card-video {
+            width: 100%;
+            height: 170px; /* Formato de retângulo pequeno */
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .card-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
@@ -397,6 +404,7 @@
                 <li><a href="#regulamento">Regulamento</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
                 <li><a href="#contato">Contato</a></li>
+                <li><a href="https://www.minasbeach.com.br/trabalheconosco" target="_blank">Trabalhe Conosco</a></li>
             </ul>
         </nav>
         <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket">COMPRAR INGRESSO</a>
@@ -463,31 +471,73 @@
             
             <div class="attractions-grid">
                 <div class="card reveal">
-                    <div class="card-img" style="background-image: url('https://i.imgur.com/jdplwNK.png');"></div>
+                    <video autoplay muted loop playsinline class="card-video">
+                        <source src="https://i.imgur.com/Rm8uQ3L.mp4" type="video/mp4">
+                    </video>
                     <div class="card-content">
-                        <h3>Piscina de Ondas</h3>
-                        <p>Sinta a emoção do mar no coração de Minas Gerais com nossas ondas artificiais.</p>
+                        <h3>Maior Piscina de Ondas de MG</h3>
+                        <p>A tecnologia mais avançada para simular o mar no coração de Minas.</p>
                     </div>
                 </div>
                 <div class="card reveal">
-                    <div class="card-img" style="background-image: url('https://i.imgur.com/GRvjLTQ.png');"></div>
+                    <video autoplay muted loop playsinline class="card-video">
+                        <source src="https://i.imgur.com/m1sTcKb.mp4" type="video/mp4">
+                    </video>
                     <div class="card-content">
-                        <h3>Rio Lento</h3>
-                        <p>Relaxe em um passeio tranquilo flutuando por todo o parque.</p>
+                        <h3>Rio Lento (320 Metros)</h3>
+                        <p>Relaxe em um passeio tranquilo flutuando por toda a extensão do parque.</p>
                     </div>
                 </div>
                 <div class="card reveal">
-                    <div class="card-img" style="background-image: url('https://i.imgur.com/fhlgPhW.png');"></div>
+                    <video autoplay muted loop playsinline class="card-video">
+                        <source src="https://i.imgur.com/3zsNouS.mp4" type="video/mp4">
+                    </video>
                     <div class="card-content">
                         <h3>Área Kids</h3>
                         <p>Segurança e diversão garantida para os pequenos aventureiros.</p>
                     </div>
                 </div>
                 <div class="card reveal">
-                    <div class="card-img" style="background-image: url('https://i.imgur.com/pdY3gd1.png');"></div>
+                    <video autoplay muted loop playsinline class="card-video">
+                        <source src="https://i.imgur.com/VUclxEF.mp4" type="video/mp4">
+                    </video>
                     <div class="card-content">
-                        <h3>Toboáguas Gigantes</h3>
-                        <p>Para quem busca adrenalina e velocidade em descidas emocionantes.</p>
+                        <h3>Free Fall (33 Metros)</h3>
+                        <p>Encare a adrenalina pura no toboágua com 33 metros de altura.</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <video autoplay muted loop playsinline class="card-video">
+                        <source src="https://i.imgur.com/m2wOwgv.mp4" type="video/mp4">
+                    </video>
+                    <div class="card-content">
+                        <h3>Tirolesa</h3>
+                        <p>Uma descida emocionante com vista privilegiada de todo o complexo.</p>
+                    </div>
+                </div>
+                <!-- Atrações sem Mídia -->
+                <div class="card reveal" style="border-top: 4px solid var(--secondary);">
+                    <div class="card-content">
+                        <h3>Surfhill (4 Pistas)</h3>
+                        <p>Desafie seus amigos em uma corrida emocionante nas nossas pistas paralelas.</p>
+                    </div>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--secondary);">
+                    <div class="card-content">
+                        <h3>Bar Molhado</h3>
+                        <p>Aproveite seus drinks e bebidas favoritas sem precisar sair da água.</p>
+                    </div>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--secondary);">
+                    <div class="card-content">
+                        <h3>Super Toboágua (21 Metros)</h3>
+                        <p>Velocidade e curvas emocionantes em uma estrutura de 21 metros.</p>
+                    </div>
+                </div>
+                <div class="card reveal" style="border-top: 4px solid var(--secondary);">
+                    <div class="card-content">
+                        <h3>Rampa sem Boia</h3>
+                        <p>Diversão clássica e refrescante em uma descida livre na água.</p>
                     </div>
                 </div>
             </div>
@@ -525,14 +575,14 @@
                     <div style="background: #eef7ff; padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--primary);">
                         <p style="font-weight: 600; color: var(--dark); margin-bottom: 15px;">Quer organizar uma excursão? Entre em contato:</p>
                         <div style="display: flex; flex-direction: column; gap: 10px;">
-                            <a href="https://wa.me/5533998400255" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99840-0255
+                            <a href="https://api.whatsapp.com/send?phone=5533991136225" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99113-6225
                             </a>
-                            <a href="https://wa.me/5533998247685" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99824-7685
+                            <a href="https://api.whatsapp.com/send?phone=5533998048328" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99804-8328
                             </a>
-                            <a href="https://wa.me/5533998057288" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
-                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99805-7288
+                            <a href="https://api.whatsapp.com/send?phone=553140639799" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="message-circle" style="width: 18px;"></i> (31) 4063-9799
                             </a>
                         </div>
                         <p style="font-size: 0.8rem; color: #666; margin-top: 15px;">* Atendimento exclusivo para grupos e excursões.</p>
@@ -742,6 +792,9 @@
             <div class="section-title reveal">
                 <h2>Onde Estamos</h2>
                 <p>Fácil acesso pela BR-116 em Raul Soares - MG</p>
+                <div style="margin-top: 2rem;">
+                    <a href="https://www.minasbeach.com.br/trabalheconosco" target="_blank" class="btn-ticket">FAÇA PARTE DO TIME</a>
+                </div>
             </div>
             <div class="map-container reveal">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1351221715423!2d-42.44973302391262!3d-20.21175644784795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb9d37f7112467d%3A0xc33e76236b28481b!2sMinas%20Beach%20Thermas%20Resort!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -760,7 +813,7 @@
                 <h4>Links Úteis</h4>
                 <p><a href="#regulamento" style="color: inherit; text-decoration: none;">Regulamento</a></p>
                 <p>Dúvidas Frequentes</p>
-                <p>Trabalhe Conosco</p>
+                <p><a href="https://www.minasbeach.com.br/trabalheconosco" target="_blank" style="color: inherit; text-decoration: none;">Trabalhe Conosco</a></p>
             </div>
             <div>
                 <h4>Redes Sociais</h4>
