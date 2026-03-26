@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minas Beach | O Paraíso em Raul Soares</title>
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #005b96; /* Azul Oceano Mais Escuro */
+            --secondary: #ffce00; /* Amarelo Sol */
+            --dark: #0a2540;
+            --light: #ffffff;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header e Navegação */
+        header {
+            background: var(--white);
+            backdrop-filter: none;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 60px; /* Ajuste de altura para a logo oficial */
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn-ticket {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 206, 0, 0.3);
+        }
+
+        /* Botão menor apenas quando estiver dentro do header */
+        header .btn-ticket {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-ticket:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 206, 0, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+            /* Fallback: caso o vídeo falhe ou demore, mostra uma imagem bonita do parque */
+            background: #000 url('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80') center/cover no-repeat;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero .reveal {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Grid de Atrações */
+        .section-padding { padding: 6rem 10%; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { transform: translateY(-10px); }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { color: var(--primary); margin-bottom: 0.5rem; }
+        .card-content p { font-size: 0.9rem; color: #555; }
+
+        /* Info Bar */
+        .info-bar {
+            display: flex;
+            justify-content: space-around;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            border-bottom: 4px solid var(--secondary);
+        }
+
+        /* Tabela de Preços Estilizada */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .price-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .price-card.featured { 
+            border-color: var(--primary); 
+            transform: scale(1.05); 
+            position: relative;
+        }
+        .price-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 18px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .price-val { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; margin: 1rem 0; }
+
+        /* Infraestrutura */
+        .infra-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .infra-item { flex: 1; min-width: 120px; padding: 1.5rem; background: var(--white); border-radius: 15px; transition: var(--transition); box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+        .infra-item:hover { background: var(--primary); color: white; }
+        .infra-item i { color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem; }
+        .infra-item:hover i { color: white; }
+
+        /* Pousada Section */
+        .pousada-section {
+            background: linear-gradient(rgba(10, 37, 64, 0.8), rgba(10, 37, 64, 0.8)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80');
+            background-size: cover;
+            color: var(--white);
+            border-radius: 30px;
+            padding: 4rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #eef7ff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .stars { color: var(--secondary); margin-bottom: 10px; }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Map */
+        .map-container { border-radius: 20px; overflow: hidden; height: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        .info-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .info-item i { color: var(--primary); margin-bottom: 5px; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 4rem 10% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header { padding: 1rem; }
+            nav { display: none; } /* Oculta o menu principal em mobile, pode ser substituído por um menu hambúrguer */
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .info-bar { flex-direction: column; gap: 2rem; margin-top: -20px; }
+            .section-padding { padding: 3rem 5%; }
+            .section-title h2 { font-size: 2rem; }
+            .pousada-section { flex-direction: column; padding: 2rem; }
+            .newsletter { margin: 2rem 5%; padding: 2rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://i.imgur.com/6pcOiRv.png" alt="Minas Beach Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#parque">O Parque</a></li>
+                <li><a href="#pousada">Hospedagem</a></li>
+                <li><a href="#atracoes">Atrações</a></li>
+                <li><a href="#excursoes">Excursões</a></li>
+                <li><a href="#precos">Ingressos</a></li>
+                <li><a href="#bilheteria">Bilheteria</a></li>
+                <li><a href="#alimentacao">Alimentação</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#regulamento">Regulamento</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket">COMPRAR INGRESSO</a>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="video-background">
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80">
+                    <source src="https://i.imgur.com/2m7uYWa.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-overlay"></div>
+            <h1 class="reveal active">Diversão sem Limites</h1>
+            <p class="reveal">O maior e mais completo parque aquático temático de Minas Gerais espera por você.</p>
+            <div class="reveal" style="display: flex; gap: 20px;">
+                <a href="#atracoes" class="btn-ticket" style="background: var(--white); color: var(--primary);">EXPLORAR ATRAÇÕES</a>
+                <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket">VER PREÇOS</a>
+            </div> 
+        </section>
+
+        <section class="info-bar">
+            <div class="info-item">
+                <i data-lucide="clock"></i>
+                <strong>Funcionamento</strong>
+                <span>Aberto hoje: 09h às 18h</span>
+            </div>
+            <div class="info-item">
+                <i data-lucide="map-pin"></i>
+                <strong>Localização</strong>
+                <span>Raul Soares - MG</span>
+            </div>
+            <div class="info-item">
+                <i data-lucide="thermometer-sun"></i>
+                <strong>Clima hoje</strong>
+                <span>28°C Ensolarado</span>
+            </div>
+        </section>
+
+        <!-- Sobre o Parque -->
+        <section id="parque" class="section-padding reveal">
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem;">O Maior de Minas</h2>
+                    <p>O Minas Beach é um parque aquático temático localizado em Raul Soares, MG. Com uma infraestrutura de primeiro mundo, oferecemos diversão para todas as idades, desde a tranquilidade do Rio Lento até a adrenalina da nossa Piscina de Ondas de última geração.</p>
+                    <div class="infra-grid" style="margin-top: 2rem;">
+                        <div class="infra-item"><i data-lucide="utensils"></i><p>Restaurantes</p></div>
+                        <div class="infra-item"><i data-lucide="shield-check"></i><p>Segurança</p></div>
+                        <div class="infra-item"><i data-lucide="car"></i><p>Estacionamento</p></div>
+                        <div class="infra-item"><i data-lucide="first-aid"></i><p>Ambulatório</p></div>
+                    </div>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="https://i.imgur.com/4pA2w49.png" alt="Vista do Parque" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </section>
+
+        <!-- Atrações -->
+        <section id="atracoes" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Experiências Incríveis</h2>
+                <p>Descubra o que preparamos para o seu dia ser inesquecível</p>
+            </div>
+            
+            <div class="attractions-grid">
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/jdplwNK.png');"></div>
+                    <div class="card-content">
+                        <h3>Piscina de Ondas</h3>
+                        <p>Sinta a emoção do mar no coração de Minas Gerais com nossas ondas artificiais.</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/GRvjLTQ.png');"></div>
+                    <div class="card-content">
+                        <h3>Rio Lento</h3>
+                        <p>Relaxe em um passeio tranquilo flutuando por todo o parque.</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/fhlgPhW.png');"></div>
+                    <div class="card-content">
+                        <h3>Área Kids</h3>
+                        <p>Segurança e diversão garantida para os pequenos aventureiros.</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/pdY3gd1.png');"></div>
+                    <div class="card-content">
+                        <h3>Toboáguas Gigantes</h3>
+                        <p>Para quem busca adrenalina e velocidade em descidas emocionantes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Excursões e Grupos -->
+        <section id="excursoes" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Excursões e Grupos</h2>
+                <p>Traga sua galera e aproveite condições exclusivas!</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
+                <div style="flex: 1; min-width: 300px;" class="reveal">
+                    <img src="https://i.imgur.com/pdY3gd1.png" alt="Grupos no Minas Beach" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
+                </div>
+                <div style="flex: 1; min-width: 300px;" class="reveal">
+                    <h3 style="color: var(--primary); font-size: 1.8rem; margin-bottom: 1.5rem;">Vantagens para Grupos</h3>
+                    <p style="margin-bottom: 1.5rem;">Organize sua viagem para o maior parque aquático temático de Minas Gerais. Seja para escolas, igrejas, empresas ou grupos de amigos, temos o pacote perfeito para você.</p>
+                    
+                    <ul style="list-style: none; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="percent" style="color: var(--primary);"></i>
+                            <span><strong>Preços Diferenciados:</strong> Descontos progressivos para grupos acima de 15 pessoas.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="bus" style="color: var(--primary);"></i>
+                            <span><strong>Cortesias:</strong> Condições especiais de entrada para guias e motoristas.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i data-lucide="user-check" style="color: var(--primary);"></i>
+                            <span><strong>Atendimento VIP:</strong> Suporte dedicado desde a reserva até a chegada ao parque.</span>
+                        </li>
+                    </ul>
+
+                    <div style="background: #eef7ff; padding: 1.5rem; border-radius: 15px; border-left: 5px solid var(--primary);">
+                        <p style="font-weight: 600; color: var(--dark); margin-bottom: 15px;">Quer organizar uma excursão? Entre em contato:</p>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <a href="https://wa.me/5533998400255" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99840-0255
+                            </a>
+                            <a href="https://wa.me/5533998247685" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99824-7685
+                            </a>
+                            <a href="https://wa.me/5533998057288" target="_blank" style="text-decoration: none; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="message-circle" style="width: 18px;"></i> (33) 99805-7288
+                            </a>
+                        </div>
+                        <p style="font-size: 0.8rem; color: #666; margin-top: 15px;">* Atendimento exclusivo para grupos e excursões.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pousada -->
+        <section id="pousada" class="section-padding">
+            <div class="pousada-section reveal">
+                <div style="flex: 1;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Pousada Minas Beach</h2>
+                    <p style="margin-bottom: 2rem; opacity: 0.9;">Hospede-se dentro do complexo e garanta acesso prioritário ao parque. Conforto, lazer e café da manhã colonial incluso.</p>
+                    <ul style="list-style: none; margin-bottom: 2rem;">
+                        <li><i data-lucide="check-circle-2" style="display: inline; vertical-align: middle; color: var(--secondary); margin-right: 10px;"></i> Suítes Climatizadas</li>
+                        <li><i data-lucide="check-circle-2" style="display: inline; vertical-align: middle; color: var(--secondary); margin-right: 10px;"></i> Área de Lazer Exclusiva</li>
+                        <li><i data-lucide="check-circle-2" style="display: inline; vertical-align: middle; color: var(--secondary); margin-right: 10px;"></i> Wi-Fi de alta velocidade</li>
+                    </ul>
+                    <a href="#" class="btn-ticket">RESERVAR AGORA</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preços -->
+        <section id="precos" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Garanta seu Ingresso Online</h2>
+                <p>Mais facilidade e rapidez para o seu dia de lazer no paraíso!</p>
+            </div>
+            <div class="pricing-table">
+                <div class="price-card reveal">
+                    <h3>Inteira</h3>
+                    <p style="margin: 1.5rem 0; font-size: 1.1rem; color: #555;">O paraíso te espera! Garanta já o seu acesso online e evite as filas da bilheteria.</p>
+                    <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket" style="display: block;">FAÇA JÁ SEU INGRESSO</a>
+                </div>
+                <div class="price-card featured reveal">
+                    <h3>Meia Entrada</h3>
+                    <p style="margin: 1.5rem 0; font-size: 1.1rem; color: #555;">Praticidade para quem tem direito ao benefício. Adquira sua meia-entrada online agora mesmo!</p>
+                    <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket" style="display: block;">FAÇA JÁ SEU INGRESSO</a>
+                </div>
+                <div class="price-card reveal">
+                    <h3>Kids</h3>
+                    <p style="margin: 1.5rem 0; font-size: 1.1rem; color: #555;">O dia das crianças começa aqui. Compre o ingresso kids online e venha se divertir com a gente!</p>
+                    <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket" style="display: block;">FAÇA JÁ SEU INGRESSO</a>
+                </div>
+                <div class="price-card reveal">
+                    <h3>Combo Família</h3>
+                    <p style="margin: 1.5rem 0; font-size: 1.1rem; color: #555;">Momentos em família são preciosos. Garanta o seu combo online com total conveniência!</p>
+                    <a href="https://loja.multiclubes.com.br/minasbeach/ingressos/ingressos2024online" target="_blank" class="btn-ticket" style="display: block;">FAÇA JÁ SEU INGRESSO</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bilheteria Local -->
+        <section id="bilheteria" class="section-padding" style="background-color: #f0f7ff;">
+            <div class="section-title reveal">
+                <h2>Bilheteria Local</h2>
+                <p>Valores para compra presencial na portaria do parque</p>
+            </div>
+            <div class="pricing-table">
+                <!-- Sexta -->
+                <div class="price-card reveal">
+                    <h3>Sexta-Feira</h3>
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p style="margin-bottom: 0.5rem;"><strong>1 ingresso:</strong> R$ 60,00</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>2 ingressos:</strong> R$ 110,00</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>3 ingressos:</strong> R$ 150,00</p>
+                    </div>
+                </div>
+                <!-- Sábado -->
+                <div class="price-card featured reveal">
+                    <h3>Sábado</h3>
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p style="margin-bottom: 0.5rem;"><strong>1 ingresso:</strong> R$ 70,00</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>2 ingressos:</strong> R$ 130,00</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>3 ingressos:</strong> R$ 180,00</p>
+                    </div>
+                </div>
+                <!-- Domingo -->
+                <div class="price-card reveal">
+                    <h3>Dom. e Feriados</h3>
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p style="margin-bottom: 0.5rem;"><strong>1 ingresso:</strong> R$ 70,00</p>
+                        <p style="margin-bottom: 0.5rem;"><strong>2 ingressos:</strong> R$ 130,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aviso Importante -->
+            <div class="card reveal" style="max-width: 800px; margin: 3rem auto 0; border-left: 5px solid var(--secondary); background: #fffde7; padding: 1.5rem;">
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <i data-lucide="info" style="color: var(--primary); flex-shrink: 0;"></i>
+                    <div>
+                        <h4 style="color: var(--dark); margin-bottom: 5px;">E atenção!!!!!</h4>
+                        <p style="font-size: 0.95rem; color: #444;">
+                            <strong>Crianças de 0 a 6 anos e 11 meses</strong> – Entrada gratuita (obrigatória apresentação de documento original e acompanhada de um adulto pagante).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Praça de Alimentação -->
+        <section id="alimentacao" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Praça de Alimentação</h2>
+                <p>Delícias para todos os gostos! Recarregue as energias com nossas opções.</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/D0jKoZ5.png');"></div>
+                    <div class="card-content">
+                        <h3>Restaurante Principal</h3>
+                        <p>Pratos variados, self-service e opções para toda a família.</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/h3gWgv2.png');"></div>
+                    <div class="card-content">
+                        <h3>Lanchonetes</h3>
+                        <p>Hambúrgueres, salgados, batatas fritas e muito mais para um lanche rápido.</p>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-img" style="background-image: url('https://i.imgur.com/HY20sj4.png');"></div>
+                    <div class="card-content">
+                        <h3>Sorveteria & Doces</h3>
+                        <p>Refresque-se com sorvetes, açaí e sobremesas deliciosas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perguntas Frequentes (FAQ) -->
+        <section id="faq" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Dúvidas Frequentes</h2>
+                <p>Tudo o que você precisa saber para sua visita</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="card reveal" style="margin-bottom: 1rem; padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">Quais são as formas de pagamento na portaria?</h3>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Aceitamos dinheiro, cartões de débito e crédito (principais bandeiras) e PIX.</p>
+                </div>
+                <div class="card reveal" style="margin-bottom: 1rem; padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">É permitido entrar com comida ou bebida?</h3>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Para garantir a segurança alimentar e a manutenção do parque, não é permitida a entrada de alimentos e bebidas externos.</p>
+                </div>
+                <div class="card reveal" style="margin-bottom: 1rem; padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">O estacionamento é gratuito?</h3>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Sim, possuímos um amplo estacionamento gratuito para nossos visitantes e hóspedes da pousada.</p>
+                </div>
+                <div class="card reveal" style="margin-bottom: 1rem; padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; color: var(--primary);">Como funciona a meia-entrada?</h3>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">A meia-entrada é válida para estudantes, idosos acima de 60 anos, professores da rede pública e PCD, mediante apresentação de documento comprobatório.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regulamento e Segurança -->
+        <section id="regulamento" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Regulamento e Segurança</h2>
+                <p>Sua segurança e bem-estar são nossa prioridade. Conheça as regras do parque.</p>
+            </div>
+            <div class="card reveal" style="max-width: 800px; margin: 0 auto;">
+                <h3 style="color: var(--primary);">Regras Essenciais</h3>
+                <ul style="list-style: disc; margin-left: 20px; color: #555;">
+                    <li style="margin-bottom: 10px;">Não é permitido entrar com alimentos e bebidas.</li>
+                    <li style="margin-bottom: 10px;">Crianças menores de 12 anos devem estar acompanhadas por um responsável.</li>
+                    <li style="margin-bottom: 10px;">O uso de trajes de banho adequados é obrigatório nas piscinas.</li>
+                    <li style="margin-bottom: 10px;">Respeite as sinalizações e orientações dos salva-vidas.</li>
+                    <li style="margin-bottom: 10px;">Não corra nas áreas molhadas para evitar acidentes.</li>
+                </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section id="depoimentos" class="section-padding">
+            <div class="section-title reveal">
+                <h2>O que nossos visitantes dizem</h2>
+                <p>Experiências reais de quem já viveu o Minas Beach</p>
+            </div>
+            <div class="testimonials reveal">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Lugar maravilhoso! A piscina de ondas é sensacional e a comida do restaurante é muito boa. Recomendo a todos!"</p>
+                    <strong style="display:block; margin-top:1rem;">— Maria Silva</strong>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Fiquei na pousada e foi a melhor escolha. Acordar dentro do parque e aproveitar as atrações cedo é top!"</p>
+                    <strong style="display:block; margin-top:1rem;">— João Pedro</strong>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Excelente para crianças. A área kids é muito segura e os monitores são atenciosos. Voltaremos com certeza."</p>
+                    <strong style="display:block; margin-top:1rem;">— Ana Cláudia</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Localização -->
+        <section id="contato" class="section-padding">
+            <div class="section-title reveal">
+                <h2>Onde Estamos</h2>
+                <p>Fácil acesso pela BR-116 em Raul Soares - MG</p>
+            </div>
+            <div class="map-container reveal">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3744.1351221715423!2d-42.44973302391262!3d-20.21175644784795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb9d37f7112467d%3A0xc33e76236b28481b!2sMinas%20Beach%20Thermas%20Resort!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">MINAS BEACH</h3>
+                <p>O melhor destino de lazer da região. Viva o verão o ano todo conosco!</p>
+                <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">CNPJ: 12.345.678/0001-90<br>Fazenda Córrego do Ouro, s/n, Raul Soares - MG</p>
+            </div>
+            <div>
+                <h4>Links Úteis</h4>
+                <p><a href="#regulamento" style="color: inherit; text-decoration: none;">Regulamento</a></p>
+                <p>Dúvidas Frequentes</p>
+                <p>Trabalhe Conosco</p>
+            </div>
+            <div>
+                <h4>Redes Sociais</h4>
+                <p><i data-lucide="instagram" style="width: 16px; display: inline; vertical-align: middle;"></i> @minasbeachoficial</p>
+                <p><i data-lucide="facebook" style="width: 16px; display: inline; vertical-align: middle;"></i> /minasbeach</p>
+                <p><i data-lucide="phone" style="width: 16px; display: inline; vertical-align: middle;"></i> (33) 3351-1234</p>
+                <p><i data-lucide="message-circle" style="width: 16px; display: inline; vertical-align: middle;"></i> WhatsApp: (33) 99999-9999</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+            <p>&copy; 2023 Minas Beach Water Park. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializa os ícones da biblioteca Lucide
+        lucide.createIcons();
+
+        // Efeito de mudança no header ao rolar a página
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '0.7rem 5%';
+                header.style.background = '#ffffff';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+            } else {
+                header.style.padding = '1rem 5%';
+                header.style.background = '#ffffff';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Efeito de Revelação (Intersection Observer)
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Adiciona um pequeno delay baseado na posição para cards
+                    if(entry.target.classList.contains('card')) {
+                        entry.target.style.transitionDelay = '200ms';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observa todos os elementos com a classe 'reveal'
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
